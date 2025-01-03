@@ -48,7 +48,7 @@ This Android application utilizes the GitHub REST API to display a list of the 1
 
 ## Future Enhancements
 - Implement retry mechanisms for API failures.
-- Add pagination support for repositories beyond the top 100.
+- Add pagination support for repositories beyond the 30 for faster Load times.
 - Provide additional repository details, such as open issues and forks, on the details screen.
 - Maybe fetch Contributor details and top contributors on the details screen, reducing the API call load.
 
@@ -71,7 +71,7 @@ If your token doesn't seem to work due to permission restrictions, try commentin
 }
 ```
 
-This will bypass the authorization header. The data would be fetched authenticated with rate limit of 60 requests per hour (which is the GitHub API's default rate limit for unauthenticated requests)
+This will bypass the authorization header. The data would be fetched unauthenticated with rate limit of 60 requests per hour (which is the GitHub API's default rate limit for unauthenticated requests)
 
 3. Build and run the project using latest Android Studio.
 
