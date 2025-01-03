@@ -56,9 +56,24 @@ This Android application utilizes the GitHub REST API to display a list of the 1
 1. Clone the repository.
 2. Add your GitHub API token to the `local.properties` file for authenticated API requests:
    ```
-   GITHUB_API_TOKEN=your_token_here
+   githubApiToken=your_token_here
    ```
-3. Build and run the project using Android Studio.
+   ### Troubleshooting Token Permission Issues
+
+If your token doesn't seem to work due to permission restrictions, try commenting out the following line in `AppModule`:
+
+```kotlin
+.addInterceptor { chain ->
+   val request = chain.request().newBuilder()
+   .addHeader("Authorization", "Bearer ${BuildConfig.GITHUB_API_TOKEN}")
+   .build()
+   chain.proceed(request)
+}
+```
+
+This will bypass the authorization header. The data would be fetched authenticated with rate limit of 60 requests per hour (which is the GitHub API's default rate limit for unauthenticated requests)
+
+3. Build and run the project using latest Android Studio.
 
 ## Dependencies
 - Jetpack Compose for UI.
