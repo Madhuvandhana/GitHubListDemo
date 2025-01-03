@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GitHubTopRepos</string>
+    <string name="star_count_format">%s stars</string>
+    <string name="contributors_data_unavailable">Contributors data unavailable</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="top_contributor">Top Contributor: %1$s</string>
+</resources>
