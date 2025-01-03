@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -6,7 +8,10 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.dagger.hilt.android)
 }
-
+val properties = Properties().apply {
+    rootProject.file("local.properties").reader().use(::load)
+}
+val githubApiToken = properties["githubApiToken"] as? String?: ""
 android {
     namespace = "com.example.githubtoprepos"
     compileSdk = 35
@@ -19,6 +24,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "GITHUB_API_TOKEN", "\"$githubApiToken\"")
+
     }
 
     buildTypes {
@@ -38,6 +45,7 @@ android {
         jvmTarget = "11"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     composeOptions {

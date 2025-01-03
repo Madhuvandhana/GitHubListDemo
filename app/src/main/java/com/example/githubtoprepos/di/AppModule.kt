@@ -1,5 +1,6 @@
 package com.example.githubtoprepos.di
 
+import com.example.githubtoprepos.BuildConfig
 import com.example.githubtoprepos.data.remote.GitHubApiService
 import dagger.Module
 import dagger.Provides
@@ -24,6 +25,13 @@ object AppModule {
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
         val client = OkHttpClient.Builder()
             .addInterceptor(logging)
+            /* comment this if your access token doesn't seem to work*/
+            .addInterceptor { chain ->
+                val request = chain.request().newBuilder()
+                    .addHeader("Authorization", "Bearer ${BuildConfig.GITHUB_API_TOKEN}")
+                    .build()
+                chain.proceed(request)
+            }
             .build()
 
         return Retrofit.Builder()

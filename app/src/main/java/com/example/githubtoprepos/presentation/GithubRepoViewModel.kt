@@ -93,9 +93,7 @@ class GithubRepoViewModel @Inject constructor(
 
                 batch.map { (key, repo) ->
                     async {
-                        Log.d("GithubRepoViewModel",
-                            "currentTime$currentTime:$nextAvailableRequestTime"
-                        )
+                        Log.d("GithubRepoViewModel","contributor key:"+contributorsState.value.topContributors[key])
                         if (contributorsState.value.topContributors[key] == null && currentTime > nextAvailableRequestTime) {
                             semaphore.withPermit {
                                 try {
