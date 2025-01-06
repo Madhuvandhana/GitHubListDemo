@@ -73,6 +73,39 @@ If your token doesn't seem to work due to permission restrictions, try commentin
 
 This will bypass the authorization header. The data would be fetched unauthenticated with rate limit of 60 requests per hour (which is the GitHub API's default rate limit for unauthenticated requests)
 
+ ### Creating local.properties
+Here's how to create and configure a `local.properties` file for an Android project:
+
+---
+
+### **Creating `local.properties`**
+
+1. **Navigate to the Root Project Directory**:
+   - Open your Android project in your favorite IDE (e.g., Android Studio).
+   - Locate the root directory of your project. This is the folder containing the `settings.gradle` or `settings.gradle.kts` file.
+
+2. **Create the `local.properties` File**:
+   - If it doesn’t already exist, create a new file in the root directory and name it `local.properties`.(Since local.properties are not commited to github)
+
+3. **Add Your Configuration**:
+   - Open the `local.properties` file in a text editor.
+   - Add key-value pairs as needed. For example:
+     ```properties
+     sdk.dir=/path/to/your/android/sdk
+     githubApiToken=<api_token>
+     ```
+
+4. **Keep It Secure**:
+   - Ensure that sensitive information (like passwords or keys) is added here rather than hardcoding it in your codebase.
+   - Add the `local.properties` file to your `.gitignore` to prevent it from being checked into version control.
+
+   Example `.gitignore` entry:
+   ```
+   /local.properties
+   ```
+This method keeps sensitive and environment-specific configurations secure and separate from your source code.
+
+
 3. Build and run the project using latest Android Studio.
 
 ## Dependencies
